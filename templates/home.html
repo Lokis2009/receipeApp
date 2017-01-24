@@ -1,0 +1,17 @@
+<div class="jumbotron">
+      <div class="container">
+        <h2>Что приготовить сегодня?</h2>
+              
+                <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                  <div uib-slide ng-repeat="recipe in recipes" index="$index">
+                    <img ng-src="{{recipe.photoUrl}}" style="margin:auto;">
+                    <div class="carousel-caption">
+                        <h3><a href="#/reciepes/{{$index}}">{{recipe.title}}</a></h3>
+                      <p><small>{{recipe.description}}</small></p>
+                    </div>
+                  </div>
+                </div>
+              
+        </div>
+    </div>
+    

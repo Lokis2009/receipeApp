@@ -1,0 +1,53 @@
+<div ng-controller="ListsCtr" class="container">
+
+  <uib-tabset active="activeJustified" justified="true">
+    <uib-tab index="0" heading="Избранное">
+    <h3 class="text-center">Избранное</h3>
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4" ng-repeat="favoritReciepe in favoritReciepes track by $index">
+          <h2>{{favoritReciepe.title}}</h2>
+          <p>{{favoritReciepe.description}} </p>
+          <p><a class="btn btn-default" href="#/reciepes/{{favoritReciepe.id}}" role="button">Подробнее &raquo;</a></p>
+        </div>
+       
+            </div> <!--row-->
+      </div> <!--container-->    
+    <hr/>
+    </uib-tab>
+    
+    <uib-tab index="1" heading="Запланированно">
+    <h3 class="text-center">Запланированно</h3>
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4" ng-repeat="plan in planReciepes track by $index">
+          <h2>{{plan.title}}</h2>
+          <p>{{plan.description}} </p>
+          <p><a class="btn btn-default" href="#/reciepes/{{plan.id}}" role="button">Подробнее &raquo;</a></p>
+        </div>
+       
+            </div> <!--row-->
+      </div> <!--container-->
+    </uib-tab>
+    
+    <uib-tab index="2" heading="Покупки">
+    <h3 class="text-center">Покупки</h3>
+    <ul ng-repeat="toBuy in toBuys track by $index">
+      <li ng-repeat="item in toBuy.ingredients">
+      
+        {{item}}
+       
+       </li>
+    </uib-tab>
+  </uib-tabset>
+
+  <hr />
+
+
+ <!-- Model:
+  <pre>{{ model | json }}</pre>
+  Nested Form:
+  <pre>{{ outerForm.nestedForm | json }}</pre>
+</div>-->

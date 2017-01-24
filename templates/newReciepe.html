@@ -1,0 +1,97 @@
+<h3>Новый рецепт</h3>
+<hr>
+
+<form class="form-horizontal" role="form" name="addReciepeForm" ng-class="{'has-error': !addReciepeForm.nameReciepe.$valid, 'has-success':addReciepeForm.nameReciepe.$valid}">
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="nameReciepe">Название</label>
+    <div class="col-sm-4">
+      <input 
+	      type="text" 
+	      class="form-control" 
+	      id="nameReciepe" 
+	      name="nameReciepe" 
+	      ng-model="addReciepe.title" 
+	      ng-maxlength=200 />
+    </div>
+   </div>
+  <div class="form-group" ng-class="{'has-error': !addReciepeForm.description.$valid, 'has-success':addReciepeForm.description.$valid}"> 
+  		<label class="control-label col-sm-2" for="description">Описание</label>
+		<div class="col-sm-4">  		
+  			<textarea name="description" 
+  					  id="description" 
+  					  class="form-control" 
+  					  ng-model="addReciepe.description"
+  					  ng-maxlength=2000>
+  					  	
+  			</textarea>	
+  		</div>
+  </div>
+
+  <div class="form-group" ng-class="{'has-error': !addReciepeForm.PhotoUrl.$valid, 'has-success':addReciepeForm.PhotoUrl.$valid}">
+    <label class="control-label col-sm-2" for="PhotoUrl">Фотография (url)</label>
+    <div class="col-sm-4">
+      <input type="url" 
+      		 class="form-control" 
+      		 id="PhotoUrl" 
+      		 name="PhotoUrl" 
+      		 placeholder="http:\\" 
+      		 ng-model="addReciepe.photoUrl">
+  	</div>
+  </div>
+
+  <div class="form-group" ng-class="{'has-error': !addReciepeForm.time.$valid, 'has-success':addReciepeForm.time.$valid}" >
+    <label class="control-label col-sm-2" for="time">Время готовки</label>
+    <div class="col-sm-4">
+      <input type="number" 
+      		 class="form-control" 
+      		 id="time" 
+      		 name="time" 
+      		 placeholder="мин." 
+      		 ng-model="addReciepe.time"
+      		 ng-maxlength=4
+      		  >
+  	</div>
+  </div>
+
+     
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="ingridients">Ингридиенты</label>
+    <div class="col-sm-4" id="inputAdd">
+    <input type="text" 
+	    	   class="form-control" 
+	    	   id="ingridients[0]" 
+	    	   name="ingridients[0]"
+	    	   placeholder="название и количество"
+	    	   ng-model="addReciepe.ingredients[0]">
+    <input type="text" 
+	    	   class="form-control" 
+	    	   id="ingridients[1]" 
+	    	   name="ingridients[1]"
+	    	   placeholder="название и количество"
+	    	   ng-model="addReciepe.ingredients[1]">
+    <input type="text" 
+	    	   class="form-control" 
+	    	   id="ingridients[2]" 
+	    	   name="ingridients[2]"
+	    	   placeholder="название и количество"
+	    	   ng-model="addReciepe.ingredients[2]">   	   
+		
+    </div>
+  </div>
+ 
+  <button type="button" class="btn" ng-click="addInput()">Добавить</button>
+ 
+ <div class="form-group"> 
+  		<label class="control-label col-sm-2" for="instruction">Инструкция</label>
+		<div class="col-sm-4">  		
+  			<textarea name="instruction" id="instruction" class="form-control" ng-model="addReciepe.instruction"></textarea>	
+  		</div>
+  </div>
+  
+  <button type="submit" class="btn" ng-click="saveNew()">Сохранить</button>
+
+</form>
+
+{{addReciepe}}
+

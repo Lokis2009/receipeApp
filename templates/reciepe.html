@@ -1,0 +1,34 @@
+<div class="container">
+        <h1>{{recipes[reciepeTitle].title}}</h1>
+            <img ng-src="{{recipes[reciepeTitle].photoUrl}}">
+        <div class="row text-center">
+
+                <div class="btn-group" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default" ng-click="saveRecipe('favorite')">Избранное</button>
+                      <button type="button" class="btn btn-default" ng-click="saveRecipe('toBuy')">Покупки</button>
+                      <button type="button" class="btn btn-default" ng-click="saveRecipe('plan')">План</button>
+                      <button type="button" class="btn btn-default" ng-click="saveRecipe('reciepes')">Сохранить</button>
+                      <button type="button" class="btn btn-sucsses"><a href="#/newReciep">Новый рецепт</a></button>
+                    </div>
+
+
+            <!-- <button type="button" class="btn btn-success" ng-click="saveRecipe()">Сохранить</button> -->
+            <hr/>
+        </div>    
+             
+            
+            <p>{{recipes[reciepeTitle].description}}</p>
+            <hr/>
+           
+
+<P>Ингридиенты:
+<ul>
+    <li ng-repeat="ingrid in recipes[reciepeTitle].ingredients track by $index">
+     {{ingrid}}
+    </li>
+</ul>
+    </P>
+<div ng-bind-html="recipes[reciepeTitle].instruction | toTrusted"></div>
+</div>
+
+</div>
