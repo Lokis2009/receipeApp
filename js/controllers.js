@@ -82,7 +82,7 @@ recipeApp.controller('IdeasCtrl', ['$scope', '$http', '$location', function ($sc
 
 recipeApp.controller('MyRecCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
-	$scope.favoritReciepes = JSON.parse(localStorage.getItem("reciepes"));
+	$scope.favoritReciepes = JSON.parse(localStorage.getItem("reciepes"));		// сделать фабрику для даных
 
                             }]);
 
@@ -112,6 +112,7 @@ recipeApp.controller('reciepeCtrl', ['$scope', '$http', '$location', '$routePara
 			"photoUrl": $scope.recipes[$scope.reciepeTitle].photoUrl,
 			"ingredients": $scope.recipes[$scope.reciepeTitle].ingredients
 		}; // create new object - new Reciep
+		
 		var objRecipe = []; // create an array of objects
 
 		if (localStorage.getItem(item) === null) { // chek is local storage clear
