@@ -41,8 +41,9 @@ recipeApp.config(['$routeProvider', '$locationProvider', function ($routeProvide
 	});
 }]);
 
-recipeApp.controller('recipeAppCtr', ['$scope', '$http', '$location', function ($scope, $http, $location) {
-
+recipeApp.controller('recipeAppCtr', ['$scope', '$http', '$location', function ($scope, $http, $location, $routeParams) {
+	
+	
 
 	$scope.myInterval = 5000;
 	$scope.noWrapSlides = false;
@@ -53,6 +54,52 @@ recipeApp.controller('recipeAppCtr', ['$scope', '$http', '$location', function (
 		$scope.recipes = data;
 	});
 
+	//saving in lokalStorage function
+	$scope.saveRecipe = function (item) {
+		
+		$scope.reciepeTitle = this.reciepeTitle;
+		
+		var newReciep = {
+			"id": $scope.reciepeTitle,
+			"title": $scope.recipes[$scope.reciepeTitle].title,
+			"description": $scope.recipes[$scope.reciepeTitle].description,
+			"photoUrl": $scope.recipes[$scope.reciepeTitle].photoUrl,
+			"ingredients": $scope.recipes[$scope.reciepeTitle].ingredients
+		}; // create new object - new Reciep
+		
+		var objRecipe = []; // create an array of objects
+
+		if (localStorage.getItem(item) === null) { // chek is local storage clear
+
+			/*newReciep= JSON.stringify(newReciep);  // object to string
+                
+                                localStorage.setItem("reciepes",newReciep);  // save in local storage
+*/
+			objRecipe.push(newReciep);
+
+			objRecipe = JSON.stringify(objRecipe); // object array to string
+
+			localStorage.setItem(item, objRecipe); // save in local storage
+		} else {
+			/*  var objRecipe =[]; // create an array of objects*/
+
+			var old = JSON.parse(localStorage.getItem(item)); // geting saved reciepes 
+
+			for (var i = 0; i < old.length; i++) {
+				objRecipe.push(old[i])
+			};
+
+
+			objRecipe.push(newReciep);
+
+			objRecipe = JSON.stringify(objRecipe); // object array to string
+
+			localStorage.setItem(item, objRecipe); // save in local storage
+
+		};
+
+
+	};
 
 
       }]);
@@ -100,54 +147,9 @@ recipeApp.controller('ListsCtr', ['$scope', '$http', '$location', function ($sco
 
 recipeApp.controller('reciepeCtrl', ['$scope', '$http', '$location', '$routeParams', function ($scope, $http, $location, $routeParams) {
 
-	$scope.reciepeTitle = $routeParams.reciepeTitle;
-
-	//saving in lokalStorage function
-	$scope.saveRecipe = function (item) {
-
-		var newReciep = {
-			"id": $scope.reciepeTitle,
-			"title": $scope.recipes[$scope.reciepeTitle].title,
-			"description": $scope.recipes[$scope.reciepeTitle].description,
-			"photoUrl": $scope.recipes[$scope.reciepeTitle].photoUrl,
-			"ingredients": $scope.recipes[$scope.reciepeTitle].ingredients
-		}; // create new object - new Reciep
-		
-		var objRecipe = []; // create an array of objects
-
-		if (localStorage.getItem(item) === null) { // chek is local storage clear
-
-			/*newReciep= JSON.stringify(newReciep);  // object to string
-                
-                                localStorage.setItem("reciepes",newReciep);  // save in local storage
-*/
-			objRecipe.push(newReciep);
-
-			objRecipe = JSON.stringify(objRecipe); // object array to string
-
-			localStorage.setItem(item, objRecipe); // save in local storage
-		} else {
-			/*  var objRecipe =[]; // create an array of objects*/
-
-			var old = JSON.parse(localStorage.getItem(item)); // geting saved reciepes 
-
-			for (var i = 0; i < old.length; i++) {
-				objRecipe.push(old[i])
-			};
-
-
-			objRecipe.push(newReciep);
-
-			objRecipe = JSON.stringify(objRecipe); // object array to string
-
-			localStorage.setItem(item, objRecipe); // save in local storage
-
-		};
-
-
-	};
-
-
+	
+		$scope.reciepeTitle = $routeParams.reciepeTitle;
+	
                             }]);
 
 // NewReciepe Controller
