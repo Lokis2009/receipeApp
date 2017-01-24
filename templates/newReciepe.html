@@ -58,26 +58,14 @@
   <div class="form-group">
     <label class="control-label col-sm-2" for="ingridients">Ингридиенты</label>
     <div class="col-sm-4" id="inputAdd">
-    <input type="text" 
+    <input  ng-repeat="ingridient in addReciepe.ingredients track by $index"
+    	   	type="text" 
 	    	   class="form-control" 
-	    	   id="ingridients[0]" 
-	    	   name="ingridients[0]"
+	    	   id="ingridients[$index]" 
+	    	   name="ingridients[$index]"
 	    	   placeholder="название и количество"
-	    	   ng-model="addReciepe.ingredients[0]">
-    <input type="text" 
-	    	   class="form-control" 
-	    	   id="ingridients[1]" 
-	    	   name="ingridients[1]"
-	    	   placeholder="название и количество"
-	    	   ng-model="addReciepe.ingredients[1]">
-    <input type="text" 
-	    	   class="form-control" 
-	    	   id="ingridients[2]" 
-	    	   name="ingridients[2]"
-	    	   placeholder="название и количество"
-	    	   ng-model="addReciepe.ingredients[2]">   	   
-		
-    </div>
+	    	   ng-model="addReciepe.ingredients[$index]">
+      </div>
   </div>
  
   <button type="button" class="btn" ng-click="addInput()">Добавить</button>
@@ -94,4 +82,5 @@
 </form>
 
 {{addReciepe}}
+
 

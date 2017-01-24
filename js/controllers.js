@@ -158,14 +158,15 @@ recipeApp.controller('NewReciepeCtr', ['$scope', '$http', '$location', function 
 	$scope.addReciepe.ingredients = [];
 
 	$scope.addReciepe.ingredients.length = 3
-
+	
+	
 	$scope.saveNew = function () {
 		console.log($scope.addReciepe);
 
 	}
 
 	$scope.addInput = function () {
-		$('#inputAdd').append('<input type="text" class="form-control" id="ingridients[' + $scope.addReciepe.ingredients.length + ']" name="ingridients[' + $scope.addReciepe.ingredients.length + ']" placeholder="название и количество" ng-model="addReciepe.ingredients[' + $scope.addReciepe.ingredients.length + ']">');
+			$scope.addReciepe.ingredients.push('');
 	}
 
 
