@@ -1,7 +1,7 @@
 <h3>Новый рецепт</h3>
 <hr>
 
-<form class="form-horizontal" role="form" name="addReciepeForm" ng-class="{'has-error': !addReciepeForm.nameReciepe.$valid, 'has-success':addReciepeForm.nameReciepe.$valid}">
+<form class="form-horizontal" role="form" name="addReciepeForm" ng-class="{'has-error': !addReciepeForm.nameReciepe.$valid, 'has-success':addReciepeForm.nameReciepe.$valid}" ng-controller="NewReciepeCtr">
 
   <div class="form-group">
     <label class="control-label col-sm-2" for="nameReciepe">Название</label>
@@ -11,7 +11,7 @@
 	      class="form-control" 
 	      id="nameReciepe" 
 	      name="nameReciepe" 
-	      ng-model="addReciepe.title" 
+	      ng-model="this.title" 
 	      ng-maxlength=200 />
     </div>
    </div>
@@ -21,7 +21,7 @@
   			<textarea name="description" 
   					  id="description" 
   					  class="form-control" 
-  					  ng-model="addReciepe.description"
+  					  ng-model="this.description"
   					  ng-maxlength=2000>
   					  	
   			</textarea>	
@@ -36,7 +36,7 @@
       		 id="PhotoUrl" 
       		 name="PhotoUrl" 
       		 placeholder="http:\\" 
-      		 ng-model="addReciepe.photoUrl">
+      		 ng-model="this.photoUrl">
   	</div>
   </div>
 
@@ -48,7 +48,7 @@
       		 id="time" 
       		 name="time" 
       		 placeholder="мин." 
-      		 ng-model="addReciepe.time"
+      		 ng-model="this.time"
       		 ng-maxlength=4
       		  >
   	</div>
@@ -58,13 +58,13 @@
   <div class="form-group">
     <label class="control-label col-sm-2" for="ingridients">Ингридиенты</label>
     <div class="col-sm-4" id="inputAdd">
-    <input  ng-repeat="ingridient in addReciepe.ingredients track by $index"
+    <input  ng-repeat="ingridient in ingredients track by $index"
     	   	type="text" 
 	    	   class="form-control" 
 	    	   id="ingridients[$index]" 
 	    	   name="ingridients[$index]"
 	    	   placeholder="название и количество"
-	    	   ng-model="addReciepe.ingredients[$index]">
+	    	   ng-model="this.ingredients[$index]">
       </div>
   </div>
  
@@ -73,15 +73,12 @@
  <div class="form-group"> 
   		<label class="control-label col-sm-2" for="instruction">Инструкция</label>
 		<div class="col-sm-4">  		
-  			<textarea name="instruction" id="instruction" class="form-control" ng-model="addReciepe.instruction"></textarea>	
+  			<textarea name="instruction" id="instruction" class="form-control" ng-model="this.instruction"></textarea>	
   		</div>
   </div>
   
-  <button class="btn" ng-click="saveRecipe('favorite')">Сохранить</button>
-   <button type="button" class="btn btn-default" ng-click="saveRecipe('favorite')">Избранное</button>
-
+  <button class="btn" ng-click="saveRecipe('my')">Сохранить</button>
+  
 </form>
-
-{{addReciepe}}
 
 

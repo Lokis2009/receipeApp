@@ -39,7 +39,7 @@ recipeApp.config(['$routeProvider', '$locationProvider', function ($routeProvide
 }]);
 
 recipeApp.controller('recipeAppCtr', ['$scope', '$http', '$location', function ($scope, $http, $location, $routeParams) {
-	
+
 	$scope.myInterval = 5000;
 	$scope.noWrapSlides = false;
 	$scope.active = 0;
@@ -51,15 +51,15 @@ recipeApp.controller('recipeAppCtr', ['$scope', '$http', '$location', function (
 
 	//saving in lokalStorage function
 	$scope.saveRecipe = function (item) {
-		
-		
+
+
 		var newReciep = {
 			"title": this.title,
 			"description": this.description,
 			"photoUrl": this.photoUrl,
 			"ingredients": this.ingredients
 		}; // create new object - new Reciep
-		
+
 		var objRecipe = []; // create an array of objects
 
 		if (localStorage.getItem(item) === null) { // chek is local storage clear
@@ -70,7 +70,7 @@ recipeApp.controller('recipeAppCtr', ['$scope', '$http', '$location', function (
 
 			localStorage.setItem(item, objRecipe); // save in local storage
 		} else {
-			
+
 			var old = JSON.parse(localStorage.getItem(item)); // geting saved reciepes 
 
 			for (var i = 0; i < old.length; i++) {
@@ -97,12 +97,12 @@ recipeApp.controller('HomeCtrl', ['$scope', '$http', '$location', function ($sco
 
 
   }]);
-	/// filter to convert text to HTML in instruction
-	recipeApp.filter('toTrusted', function ($sce) {
-		return function (value) {
-			return $sce.trustAsHtml(value);
-		};
-	});
+/// filter to convert text to HTML in instruction
+recipeApp.filter('toTrusted', function ($sce) {
+	return function (value) {
+		return $sce.trustAsHtml(value);
+	};
+});
 
 recipeApp.config(['$sceProvider', function ($sceProvider) {
 	$sceProvider.enabled(true);
@@ -117,7 +117,7 @@ recipeApp.controller('IdeasCtrl', ['$scope', '$http', '$location', function ($sc
 
 recipeApp.controller('MyRecCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
-	$scope.favoritReciepes = JSON.parse(localStorage.getItem("reciepes"));		// сделать фабрику для даных
+	$scope.favoritReciepes = JSON.parse(localStorage.getItem("my"));
 
                             }]);
 
@@ -137,47 +137,39 @@ recipeApp.controller('ListsCtr', ['$scope', '$http', '$location', function ($sco
 
 recipeApp.controller('reciepeCtrl', ['$scope', '$http', '$location', '$routeParams', function ($scope, $http, $location, $routeParams) {
 
-	
-		$scope.reciepeTitle = $routeParams.reciepeTitle;
-		
-	for (var i=0; $scope.recipes.length > i; i++ ){
-		
-		if ($scope.recipes[i].title==$scope.reciepeTitle){
-			
-			$scope.title=$scope.recipes[i].title;
-			$scope.description=$scope.recipes[i].description;
-			$scope.photoUrl=$scope.recipes[i].photoUrl;
-			$scope.ingredients=$scope.recipes[i].ingredients;
-			$scope.instruction=$scope.recipes[i].instruction;
-			
-			
+
+	$scope.reciepeTitle = $routeParams.reciepeTitle;
+
+	for (var i = 0; $scope.recipes.length > i; i++) {
+
+		if ($scope.recipes[i].title == $scope.reciepeTitle) {
+
+			$scope.title = $scope.recipes[i].title;
+			$scope.description = $scope.recipes[i].description;
+			$scope.photoUrl = $scope.recipes[i].photoUrl;
+			$scope.ingredients = $scope.recipes[i].ingredients;
+			$scope.instruction = $scope.recipes[i].instruction;
+
+
 		}
-		
+
 	}
-	
-	
+
+
                             }]);
 
 // NewReciepe Controller
 
 recipeApp.controller('NewReciepeCtr', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
-	$scope.addReciepe = {};
 
-	$scope.addReciepe.ingredients = [];
+	$scope.ingredients = [];
 
-	$scope.addReciepe.ingredients.length = 3
-	
-	
-	$scope.saveNew = function () {
-		console.log($scope.addReciepe);
-
-	}
+	$scope.ingredients.length = 3
 
 	$scope.addInput = function () {
-			$scope.addReciepe.ingredients.push('');
+		$scope.ingredients.push('');
 	}
 
 
                          }]);
-
