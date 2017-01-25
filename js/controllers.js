@@ -117,7 +117,7 @@ recipeApp.controller('IdeasCtrl', ['$scope', '$http', '$location', function ($sc
 
 recipeApp.controller('MyRecCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
-	$scope.favoritReciepes = JSON.parse(localStorage.getItem("my"));
+	$scope.myReciepes = JSON.parse(localStorage.getItem("my"));
 
                             }]);
 
