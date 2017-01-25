@@ -6,9 +6,6 @@ var recipeApp = angular.module('recipeApp', ['ngAnimate', 'ui.bootstrap', 'ngRou
 
 recipeApp.config(['$routeProvider', '$locationProvider', function ($routeProvide, $locationProvider) {
 
-
-
-
 	$routeProvide
 		.when('/', {
 			templateUrl: 'templates/home.html',
@@ -43,8 +40,6 @@ recipeApp.config(['$routeProvider', '$locationProvider', function ($routeProvide
 
 recipeApp.controller('recipeAppCtr', ['$scope', '$http', '$location', function ($scope, $http, $location, $routeParams) {
 	
-	
-
 	$scope.myInterval = 5000;
 	$scope.noWrapSlides = false;
 	$scope.active = 0;
@@ -109,12 +104,12 @@ recipeApp.controller('HomeCtrl', ['$scope', '$http', '$location', function ($sco
 
 
   }]);
-/// filter to convert text to HTML in instruction
-recipeApp.filter('toTrusted', function ($sce) {
-	return function (value) {
-		return $sce.trustAsHtml(value);
-	};
-});
+	/// filter to convert text to HTML in instruction
+	recipeApp.filter('toTrusted', function ($sce) {
+		return function (value) {
+			return $sce.trustAsHtml(value);
+		};
+	});
 
 recipeApp.config(['$sceProvider', function ($sceProvider) {
 	$sceProvider.enabled(true);
@@ -145,10 +140,27 @@ recipeApp.controller('ListsCtr', ['$scope', '$http', '$location', function ($sco
 
                             }]);
 
+// reciepe Controller
+
 recipeApp.controller('reciepeCtrl', ['$scope', '$http', '$location', '$routeParams', function ($scope, $http, $location, $routeParams) {
 
 	
 		$scope.reciepeTitle = $routeParams.reciepeTitle;
+		
+	for (var i=0; $scope.recipes.length > i; i++ ){
+		
+		if ($scope.recipes[i].title==$scope.reciepeTitle){
+			
+			$scope.description=$scope.recipes[i].description;
+			$scope.photoUrl=$scope.recipes[i].photoUrl;
+			$scope.ingredients=$scope.recipes[i].ingredients;
+			$scope.instruction=$scope.recipes[i].instruction;
+			
+			
+		}
+		
+	}
+	
 	
                             }]);
 
@@ -174,3 +186,4 @@ recipeApp.controller('NewReciepeCtr', ['$scope', '$http', '$location', function 
 
 
                          }]);
+
