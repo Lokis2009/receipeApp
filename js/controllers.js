@@ -38,12 +38,18 @@ recipeApp.config(['$routeProvider', '$locationProvider', function ($routeProvide
 	});
 }]);
 
+/// filter to convert text to HTML in instruction
+recipeApp.filter('toTrusted', function ($sce) {
+	return function (value) {
+		return $sce.trustAsHtml(value);
+	};
+});
+
+recipeApp.config(['$sceProvider', function ($sceProvider) {
+	$sceProvider.enabled(true);
+}]);
+
 recipeApp.controller('recipeAppCtr', ['$scope', '$http', '$location', function ($scope, $http, $location, $routeParams) {
-
-	$scope.myInterval = 5000;
-	$scope.noWrapSlides = false;
-	$scope.active = 0;
-
 
 	$http.get('https://api.myjson.com/bins/4aje5').success(function (data, status, headers, config) {
 		$scope.recipes = data;
@@ -95,24 +101,17 @@ recipeApp.controller('recipeAppCtr', ['$scope', '$http', '$location', function (
 /// Home controller
 recipeApp.controller('HomeCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
+	$scope.myInterval = 5000;
+	$scope.noWrapSlides = false;
+	$scope.active = 0;
 
   }]);
-/// filter to convert text to HTML in instruction
-recipeApp.filter('toTrusted', function ($sce) {
-	return function (value) {
-		return $sce.trustAsHtml(value);
-	};
-});
-
-recipeApp.config(['$sceProvider', function ($sceProvider) {
-	$sceProvider.enabled(true);
-}]);
-
 
 /// Ideas controller
 recipeApp.controller('IdeasCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
-                         }]);
+                       }]);
+
 // My Receipes Controller
 
 recipeApp.controller('MyRecCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
@@ -156,7 +155,7 @@ recipeApp.controller('reciepeCtrl', ['$scope', '$http', '$location', '$routePara
 	}
 
 
-                            }]);
+                 }]);
 
 // NewReciepe Controller
 
@@ -170,6 +169,18 @@ recipeApp.controller('NewReciepeCtr', ['$scope', '$http', '$location', function 
 	$scope.addInput = function () {
 		$scope.ingredients.push('');
 	}
+	
+	$('.save').click(function(){
+		
+		var newReciep = {
+			"title": $scope.title,
+			"description": $scope.description,
+			"photoUrl": $scope.photoUrl,
+			"ingredients": $scope.ingredients
+		}; // create new object - new Reciep
+		
+		$scope.recipes.push(newReciep);
+	}) 
 
 
                          }]);
