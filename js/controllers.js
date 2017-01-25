@@ -52,32 +52,25 @@ recipeApp.controller('recipeAppCtr', ['$scope', '$http', '$location', function (
 	//saving in lokalStorage function
 	$scope.saveRecipe = function (item) {
 		
-		$scope.reciepeTitle = this.reciepeTitle;
 		
 		var newReciep = {
-			"id": $scope.reciepeTitle,
-			"title": $scope.recipes[$scope.reciepeTitle].title,
-			"description": $scope.recipes[$scope.reciepeTitle].description,
-			"photoUrl": $scope.recipes[$scope.reciepeTitle].photoUrl,
-			"ingredients": $scope.recipes[$scope.reciepeTitle].ingredients
+			"title": this.title,
+			"description": this.description,
+			"photoUrl": this.photoUrl,
+			"ingredients": this.ingredients
 		}; // create new object - new Reciep
 		
 		var objRecipe = []; // create an array of objects
 
 		if (localStorage.getItem(item) === null) { // chek is local storage clear
 
-			/*newReciep= JSON.stringify(newReciep);  // object to string
-                
-                                localStorage.setItem("reciepes",newReciep);  // save in local storage
-*/
 			objRecipe.push(newReciep);
 
 			objRecipe = JSON.stringify(objRecipe); // object array to string
 
 			localStorage.setItem(item, objRecipe); // save in local storage
 		} else {
-			/*  var objRecipe =[]; // create an array of objects*/
-
+			
 			var old = JSON.parse(localStorage.getItem(item)); // geting saved reciepes 
 
 			for (var i = 0; i < old.length; i++) {
@@ -151,6 +144,7 @@ recipeApp.controller('reciepeCtrl', ['$scope', '$http', '$location', '$routePara
 		
 		if ($scope.recipes[i].title==$scope.reciepeTitle){
 			
+			$scope.title=$scope.recipes[i].title;
 			$scope.description=$scope.recipes[i].description;
 			$scope.photoUrl=$scope.recipes[i].photoUrl;
 			$scope.ingredients=$scope.recipes[i].ingredients;
