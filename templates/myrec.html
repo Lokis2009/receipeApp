@@ -2,10 +2,10 @@
  <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-4" ng-repeat="favoritReciepe in favoritReciepes track by $index">
-          <h2>{{favoritReciepe.title}}</h2>
-          <p>{{favoritReciepe.description}} </p>
-          <p><a class="btn btn-default" href="#/reciepes/{{favoritReciepe.id}}" role="button">Подробнее &raquo;</a></p>
+        <div class="col-md-4" ng-repeat="myReciepe in myReciepes track by $index">
+          <h2>{{myReciepe.title}}</h2>
+          <p>{{myReciepe.description}} </p>
+          <p><a class="btn btn-default" href="#/reciepes/{{myReciepes[$index].title}}" role="button">Подробнее &raquo;</a></p>
         </div>
        
      </div> <!--row-->

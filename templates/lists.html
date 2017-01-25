@@ -9,7 +9,8 @@
         <div class="col-md-4" ng-repeat="favoritReciepe in favoritReciepes track by $index">
           <h2>{{favoritReciepe.title}}</h2>
           <p>{{favoritReciepe.description}} </p>
-          <p><a class="btn btn-default" href="#/reciepes/{{favoritReciepe.id}}" role="button">Подробнее &raquo;</a></p>
+          <p><a class="btn btn-default" href="#/reciepes/{{favoritReciepes[$index].title}}" role="button">Подробнее &raquo;</a></p>
+          {{favoritReciepe[$index].title}}
         </div>
        
             </div> <!--row-->
@@ -25,7 +26,7 @@
         <div class="col-md-4" ng-repeat="plan in planReciepes track by $index">
           <h2>{{plan.title}}</h2>
           <p>{{plan.description}} </p>
-          <p><a class="btn btn-default" href="#/reciepes/{{plan.id}}" role="button">Подробнее &raquo;</a></p>
+          <p><a class="btn btn-default" href="#/reciepes/{{planReciepes[$index].title}}" role="button">Подробнее &raquo;</a></p>
         </div>
        
             </div> <!--row-->
